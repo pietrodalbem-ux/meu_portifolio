@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Pietro Dalbem - Full Stack Developer and UI/UX Specialist.">
+  <title>Pietro Dalbem | Full Stack Developer & UI/UX</title>
+
+  <link rel="icon" type="image/png" href="head_icon.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* TEMA: PRETO E VERMELHO (BLOOD & CHARCOAL) */
+    :root {
+      --primary: #dc3545;
+      /* Vermelho Profundo */
+      --primary-glow: rgba(220, 53, 69, 0.5);
+      --bg-dark: #050505;
+      /* Preto Puro */
+      --bg-section: #0a0a0a;
+      /* Preto levemente mais claro */
+      --text-main: #ffffff;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .text-gray {
+      color: #cbd5e1 !important;
+    }
+
+    /* Scrollbar Personalizada */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    /* Animações Globais */
+    @keyframes orbit {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    @keyframes counter-orbit {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes pulse-red {
+      0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+      }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Magnetic Wrapper */
+    .magnetic-wrap {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* Reveal Animations */
+    .reveal-text {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reveal-text::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary);
+      transform: translateX(-101%);
+      transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .reveal-text.active::after {
+      transform: translateX(101%);
+    }
+
+    /* Background Elements */
+    .bg-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+      filter: blur(50px);
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: float 20s infinite alternate;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 15px 0;
+      transition: 0.3s;
+    }
+
+    .nav-link {
+      color: #fff !important;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      font-weight: 600;
+      transition: 0.3s;
+      padding: 10px 20px !important;
+    }
+
+    .nav-link:hover {
+      color: var(--primary) !important;
+      background: rgba(220, 53, 69, 0.05);
+      border-radius: 5px;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: radial-gradient(circle at right, #1a0000 0%, #050505 100%);
+      padding-top: 80px;
+      padding-bottom: 60px;
+    }
+
+    .typing-container {
+      font-family: 'Fira Code', monospace;
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 25px;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+      text-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    /* Foto Vertical 3D */
+    .hero-img-vertical {
+      width: 100%;
+      max-width: 480px;
+      height: 75vh;
+      min-height: 550px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 25px;
+      border: 2px solid rgba(220, 53, 69, 0.1);
+      box-shadow: 0 10px 50px rgba(220, 53, 69, 0.05);
+      animation: float 7s ease-in-out infinite;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .hero-img-vertical.photo-react {
+      transform: translateY(-45px) rotate(1deg);
+      border-color: rgba(220, 53, 69, 0.7);
+      box-shadow: 0 20px 70px rgba(220, 53, 69, 0.4);
+    }
+
+    /* WIDGET DO SISTEMA SOLAR */
+    .tech-widget-box {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      position: relative;
+      backdrop-filter: blur(5px);
+    }
+
+    .solar-wrapper-small {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      flex-shrink: 0;
+    }
+
+    .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: #000;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 35px rgba(220, 53, 69, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .sun i {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: orbit linear infinite;
+      pointer-events: none;
+    }
+
+    .orbit-1 {
+      width: 110px;
+      height: 110px;
+      animation-duration: 12s;
+    }
+
+    .orbit-2 {
+      width: 165px;
+      height: 165px;
+      animation-duration: 24s;
+    }
+
+    .orbit-3 {
+      width: 220px;
+      height: 220px;
+      animation-duration: 36s;
+    }
+
+    .solar-wrapper-small.paused .orbit {
+      animation-play-state: paused;
+    }
+
+    .planet {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      margin-left: -20px;
+      margin-top: -20px;
+      background: #080808;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      cursor: pointer;
+      transition: 0.3s;
+      pointer-events: auto;
+      z-index: 20;
+    }
+
+    .orbit-1 .planet i {
+      animation: counter-orbit 12s linear infinite;
+    }
+
+    .orbit-2 .planet i {
+      animation: counter-orbit 24s linear infinite;
+    }
+
+    .orbit-3 .planet i {
+      animation: counter-orbit 36s linear infinite;
+    }
+
+    .solar-wrapper-small.paused .planet i {
+      animation-play-state: paused;
+    }
+
+    .planet.selected {
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(220, 53, 69, 0.7);
+      transform: scale(1.15);
+      background: #111;
+    }
+
+    .orbit-1 .p-a {
+      top: 0;
+      left: 50%;
+    }
+
+    .orbit-1 .p-b {
+      top: 100%;
+      left: 50%;
+    }
+
+    .orbit-2 .p-a {
+      top: 15%;
+      left: 15%;
+    }
+
+    .orbit-2 .p-b {
+      top: 85%;
+      left: 85%;
+    }
+
+    .orbit-3 .p-a {
+      top: 50%;
+      left: 0%;
+    }
+
+    .orbit-3 .p-b {
+      top: 50%;
+      left: 100%;
+    }
+
+    .devicon-html5-plain {
+      color: #E34F26;
+    }
+
+    .devicon-css3-plain {
+      color: #1572B6;
+    }
+
+    .devicon-php-plain {
+      color: #777BB4;
+    }
+
+    .devicon-mysql-plain {
+      color: #4479A1;
+    }
+
+    .devicon-javascript-plain {
+      color: #F7DF1E;
+    }
+
+    .devicon-c-plain {
+      color: #A8B9CC;
+    }
+
+    .tech-details-desktop {
+      flex: 1;
+      font-family: 'Fira Code', monospace;
+      color: var(--primary);
+      font-size: 0.9rem;
+      min-height: 160px;
+      padding: 15px;
+      text-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+    }
+
+    /* SEÇÕES GLOBAIS */
+    .section-title {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .section-title span {
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .section-subtitle {
+      color: var(--primary);
+      font-family: 'Fira Code', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    /* SEÇÃO EXPERTISE */
+    .expertise-section {
+      padding: 60px 0;
+      background-color: var(--bg-section);
+    }
+
+    .expertise-card {
+      border-radius: 15px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.4s;
+      height: 100%;
+    }
+
+    .expertise-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(220, 53, 69, 0.1);
+    }
+
+    .expertise-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      filter: grayscale(100%) brightness(0.7);
+      transition: 0.5s;
+    }
+
+    .expertise-card:hover .expertise-img {
+      filter: grayscale(0%) brightness(1);
+      transform: scale(1.03);
+    }
+
+    /* SEÇÃO TRAJETÓRIA */
+    .trajectory-section {
+      padding: 60px 0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background-color: rgba(255, 255, 255, 0.05);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1px;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      right: -8px;
+      background-color: var(--bg-dark);
+      border: 3px solid var(--primary);
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+      animation: pulse-red 2s infinite;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .right::after {
+      left: -8px;
+    }
+
+    .timeline-content {
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .timeline-content:hover {
+      border-color: rgba(220, 53, 69, 0.3);
+      background: rgba(220, 53, 69, 0.05);
+    }
+
+    .timeline-date {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .timeline-item::after {
+        left: 23px;
+      }
+
+      .right {
+        left: 0%;
+      }
+    }
+
+    /* SEÇÃO LABORATÓRIO */
+    .projects-section {
+      padding: 80px 0;
+      background-color: var(--bg-section);
+    }
+
+    .project-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.4s;
+      background: var(--bg-dark);
+    }
+
+    .project-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: 0.6s;
+      filter: brightness(0.8);
+    }
+
+    .project-badges .badge {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+
+    @media (min-width: 769px) {
+      .project-info {
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background: rgba(2, 2, 2, 0.96);
+        padding: 30px;
+        transition: 0.5s;
+        border-top: 3px solid var(--primary);
+        z-index: 5;
+      }
+
+      .project-item:hover img {
+        transform: scale(1.08);
+        filter: brightness(0.3);
+      }
+
+      .project-item:hover .project-info {
+        bottom: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .expertise-img {
+        height: 200px;
+      }
+
+      .project-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-item img {
+        height: 200px;
+        filter: brightness(1);
+      }
+
+      .project-info {
+        position: static;
+        background: #050505;
+        padding: 25px;
+        border-top: 2px solid var(--primary);
+      }
+    }
+
+    /* FOOTER E MENU LEQUE */
+    .footer-huge {
+      padding: 60px 0 80px 0; /* Reduzido padding superior e inferior */
+      background: #020202;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .fan-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 80px;
+      margin-bottom: 60px; /* Aumentado para n colar no fundo */
+      height: 180px;
+      width: 100%; /* Mudado para 100% para evitar overflow em telas pequenas */
+      max-width: 320px;
+    }
+
+    .fan-toggle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(220, 53, 69, 0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .fan-toggle:hover {
+      transform: translateX(-50%) scale(1.08);
+      background-color: #ff1f35;
+      box-shadow: 0 15px 40px rgba(220, 53, 69, 0.6);
+    }
+
+    .fan-container.active .fan-toggle {
+      background-color: #fff;
+      color: var(--primary);
+      transform: translateX(-50%) scale(0.9);
+    }
+
+    .fan-container.active .fan-toggle i {
+      transform: rotate(180deg);
+      transition: transform 0.4s ease;
+    }
+
+    .fan-item {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      font-size: 1.5rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      transform: translate(-50%, 0) scale(0.3);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 5;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .fan-container.active .item-1 {
+      opacity: 1;
+      transform: translate(calc(-50% - 130px), -40px) scale(1);
+      transition-delay: 0.1s;
+    }
+
+    .fan-container.active .item-2 {
+      opacity: 1;
+      transform: translate(calc(-50% - 50px), -120px) scale(1);
+      transition-delay: 0.2s;
+    }
+
+    .fan-container.active .item-3 {
+      opacity: 1;
+      transform: translate(calc(-50% + 50px), -120px) scale(1);
+      transition-delay: 0.3s;
+    }
+
+    .fan-container.active .item-4 {
+      opacity: 1;
+      transform: translate(calc(-50% + 130px), -40px) scale(1);
+      transition-delay: 0.4s;
+    }
+
+    .fan-container.active .fan-item:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      z-index: 15;
+    }
+
+    .fan-container.active .item-1:hover {
+      transform: translate(calc(-50% - 130px), -40px) scale(1.15);
+    }
+
+    .fan-container.active .item-2:hover {
+      transform: translate(calc(-50% - 50px), -120px) scale(1.15);
+    }
+
+    .fan-container.active .item-3:hover {
+      transform: translate(calc(-50% + 50px), -120px) scale(1.15);
+    }
+
+    .fan-container.active .item-4:hover {
+      transform: translate(calc(-50% + 130px), -40px) scale(1.15);
+    }
+
+    /* Estilo do botão de Idioma */
+    .lang-btn {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-family: 'Fira Code', monospace;
+      transition: 0.3s;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div class="bg-blobs">
+    <div class="blob" style="top: 10%; left: 10%;"></div>
+    <div class="blob" style="top: 60%; right: 10%; animation-delay: -5s;"></div>
+    <div class="blob" style="bottom: 10%; left: 30%; animation-delay: -10s;"></div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand text-white fw-bold fs-3" style="font-family: 'Fira Code', monospace;" href="#">&lt;PD<span
+          style="color:var(--primary)">.</span>&gt;</a>
+      <button class="navbar-toggler bg-light border-0 rounded-1" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-label="Menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#hero" data-en="Home" data-pt="Início">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#expertise" data-en="Expertise"
+              data-pt="Expertise">Expertise</a></li>
+          <li class="nav-item"><a class="nav-link" href="#laboratorio" data-en="Projects"
+              data-pt="Projetos">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#timeline" data-en="Journey" data-pt="Trajetória">Journey</a>
+          </li>
+          <li class="nav-item ms-lg-3">
+            <div class="magnetic-wrap">
+              <a href="#contato" class="btn btn-danger rounded-pill px-4"
+                style="font-weight:600;font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;" data-en="Contact"
+                data-pt="Contato">Contact</a>
+            </div>
+          </li>
+
+          <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+            <div class="magnetic-wrap">
+              <button id="languageToggle" class="btn lang-btn btn-sm d-flex align-items-center gap-2 px-3 py-2 rounded-1">
+                <img id="langFlag" src="https://flagcdn.com/w20/us.png" alt="English">
+                <span id="langText" class="fw-bold" style="font-size: 0.85rem;">EN</span>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1000">
+          <div class="typing-container">>_ <span id="typewriter"></span><span
+              style="animation: blink 1s infinite;">|</span></div>
+          <h1 class="text-white" data-en="Coding the future, designing <span>experiences</span>."
+            data-pt="Codificando o futuro, desenhando <span>experiências</span>.">Coding the future, designing
+            <span>experiences</span>.
+          </h1>
+          <p class="lead mt-4 mb-4 text-gray" style="max-width: 580px; font-weight: 300;"
+            data-en="Hello, I'm Pietro Dalbem. Full Stack Developer in training at SENAI and High School student. Specialized in merging robust back-end logic with intuitive UI/UX interfaces and hardware prototyping."
+            data-pt="Olá, sou Pietro Dalbem. Desenvolvedor Full Stack em formação no SENAI e estudante do Ensino Médio. Especializado em unir lógica back-end robusta com interfaces UI/UX intuitivas e prototipagem de hardware.">
+            Hello, I'm Pietro Dalbem. Full Stack Developer in training at SENAI and High School student. Specialized in
+            merging robust back-end logic with intuitive UI/UX interfaces and hardware prototyping.
+          </p>
+          <div class="magnetic-wrap">
+            <a href="#laboratorio" class="btn btn-outline-danger btn-lg rounded-pill px-5 mb-5"
+              style="font-family: 'Fira Code', monospace; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;"
+              data-en="Explore Portfolio" data-pt="Explorar Portfólio">Explore Portfolio</a>
+          </div>
+
+          <div class="tech-widget-box d-flex flex-row align-items-center p-4 mt-3">
+            <div id="solar-system" class="solar-wrapper-small me-xl-4">
+              <div class="sun"><i class="fa-solid fa-brain"></i></div>
+              <div class="orbit orbit-1">
+                <div class="planet p-a" data-tech="html"><i class="devicon-html5-plain"></i></div>
+                <div class="planet p-b" data-tech="css"><i class="devicon-css3-plain"></i></div>
+              </div>
+              <div class="orbit orbit-2">
+                <div class="planet p-a" data-tech="js"><i class="devicon-javascript-plain"></i></div>
+                <div class="planet p-b" data-tech="c"><i class="devicon-c-plain"></i></div>
+              </div>
+              <div class="orbit orbit-3">
+                <div class="planet p-a" data-tech="php"><i class="devicon-php-plain"></i></div>
+                <div class="planet p-b" data-tech="mysql"><i class="devicon-mysql-plain"></i></div>
+              </div>
+            </div>
+            <div id="tech-details" class="tech-details-desktop">
+              <h6 id="tech-title"
+                style="font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;"
+                class="mb-3 text-white" data-en="Stack & Core Tech" data-pt="Stack & Core Tech">Stack & Core Tech</h6>
+              <div id="tech-text" class="text-gray" style="font-weight: 300;"
+                data-en="> Click or hover over the rotating technologies to see specific details of my technical domain."
+                data-pt="> Clique ou passe o mouse nas tecnologias giratórias para ver detalhes específicos do meu domínio técnico.">
+                > Click or hover over the rotating technologies to see specific details of my technical domain.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 text-center mt-5 mt-lg-0" data-aos="zoom-in" data-aos-duration="1200">
+          <img id="pietro-photo" src="imagem_eu.jpeg" alt="Pietro Dalbem" class="hero-img-vertical">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="expertise" class="expertise-section">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <p class="section-subtitle" data-en="// Areas of Expertise" data-pt="// Áreas de Atuação">// Areas of Expertise
+        </p>
+        <h2 class="section-title" data-en="My Professional <span>Expertise</span>"
+          data-pt="Minha <span>Expertise</span> Profissional">My Professional <span>Expertise</span></h2>
+      </div>
+      <div class="row g-4 mt-5">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="expertise-card">
+            <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=800&auto=format&fit=crop"
+              alt="Backend Development Code" class="expertise-img">
+            <div class="p-4">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-code-slash text-danger fs-2 me-3"></i>
+                <h3 class="mb-0 fw-bold text-white h4">Back-end Engineering</h3>
+              </div>
+              <p class="text-gray fw-light mb-0" style="font-size: 0.9rem;"
+                data-en="Development of scalable logical architectures using pure PHP and object-oriented programming. Specialist in modeling and securely manipulating relational databases with MySQL/MySQLi."
+                data-pt="Desenvolvimento de arquiteturas lógicas escaláveis utilizando PHP puro e orientação a objetos. Especialista em modelagem e manipulação segura de bancos de dados relacionais com MySQL/MySQLi.">
+                Development of scalable logical architectures using pure PHP and object-oriented programming. Specialist
+                in modeling and securely manipulating relational databases with MySQL/MySQLi.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="expertise-card">
+            <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800&auto=format&fit=crop"
+              alt="UI/UX Engineering Design" class="expertise-img">
+            <div class="p-4">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-layers text-danger fs-2 me-3"></i>
+                <h3 class="mb-0 fw-bold text-white h4">UI/UX <br>Engineering</h3>
+              </div>
+              <p class="text-gray fw-light mb-0" style="font-size: 0.9rem;"
+                data-en="Creation of intuitive user journeys and high-fidelity prototyping in Figma. Focus on developing consistent Design Systems and responsive front-end."
+                data-pt="Criação de jornadas do usuário intuitivas e prototipagem de alta fidelidade no Figma. Foco no desenvolvimento de Design Systems consistentes e front-end responsivo.">
+                Creation of intuitive user journeys and high-fidelity prototyping in Figma. Focus on developing
+                consistent Design Systems and responsive front-end.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="expertise-card">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
+              alt="Hardware Prototyping Board" class="expertise-img">
+            <div class="p-4">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-cpu text-danger fs-2 me-3"></i>
+                <h3 class="mb-0 fw-bold text-white h4">IoT & Hardware Prototyping</h3>
+              </div>
+              <p class="text-gray fw-light mb-0" style="font-size: 0.9rem;"
+                data-en="Integration of software and hardware through the Arduino platform. Mastery of C language for microcontroller programming and automation development."
+                data-pt="Integração de software e hardware através da plataforma Arduino. Domínio da linguagem C para programação de microcontroladores e desenvolvimento de automações.">
+                Integration of software and hardware through the Arduino platform. Mastery of C language for
+                microcontroller programming and automation development.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="laboratorio" class="projects-section">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <p class="section-subtitle" data-en="// Case Studies" data-pt="// Casos de Estudo">// Case Studies</p>
+        <h2 class="section-title" data-en="My Project <span>Laboratory</span>"
+          data-pt="Meu <span>Laboratório</span> de Projetos">My Project <span>Laboratory</span></h2>
+      </div>
+      <div class="row mt-5 g-4">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="project-item">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1000&auto=format&fit=crop"
+              alt="Sistema de Gestão Financeira PHP">
+            <div class="project-info">
+              <span class="badge bg-warning text-dark mb-2 fw-bold" data-en="In Development"
+                data-pt="Em Desenvolvimento">In Development</span>
+              <h3 class="text-white fw-bold mb-3 h4" data-en="Core CRM: Enterprise Management System"
+                data-pt="Core CRM: Sistema de Gestão Empresarial">Core CRM: Enterprise Management System</h3>
+              <p class="text-gray mb-3" style="font-size: 0.9rem; font-weight: 300;"
+                data-en="Advanced database modeling and back-end logic structured in MVC. Focus on secure CRUD operations and authentication system."
+                data-pt="Modelagem avançada de banco de dados e lógica back-end estruturada em MVC. Foco na implementação segura de operações CRUD e sistema de autenticação.">
+                Advanced database modeling and back-end logic structured in MVC. Focus on secure CRUD operations and
+                authentication system.</p>
+              <div class="project-badges mb-3 d-flex flex-wrap gap-2">
+                <span class="badge text-white" style="background:#777BB4">PHP</span>
+                <span class="badge text-white" style="background:#4479A1">MySQL</span>
+              </div>
+              <div class="magnetic-wrap">
+                <a href="https://github.com/pietrodalbem-" target="_blank" class="btn btn-sm btn-danger px-3 rounded-pill"
+                  style="font-size:0.75rem">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="project-item">
+            <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=1000&auto=format&fit=crop"
+              alt="Interface Figma Mobile Design">
+            <div class="project-info">
+              <span class="badge bg-success text-white mb-2 fw-bold" data-en="Completed/Prototyping"
+                data-pt="Concluído/Prototipagem">Completed/Prototyping</span>
+              <h3 class="text-white fw-bold mb-3 h4" data-en="Aurora Design System: UI Components"
+                data-pt="Aurora Design System: Componentes UI">Aurora Design System: UI Components</h3>
+              <p class="text-gray mb-3" style="font-size: 0.9rem; font-weight: 300;"
+                data-en="Complete development of a design system in Figma, focusing on creating scalable components, variants, and interactive prototyping."
+                data-pt="Desenvolvimento completo de um sistema de design no Figma, com foco na criação de componentes escaláveis, variantes e prototipagem interativa.">
+                Complete development of a design system in Figma, focusing on creating scalable components, variants,
+                and interactive prototyping.</p>
+              <div class="project-badges mb-3 d-flex flex-wrap gap-2">
+                <span class="badge text-white" style="background:#F24E1E">Figma</span>
+                <span class="badge text-white" style="background:#ff4444">UI/UX</span>
+              </div>
+              <div class="magnetic-wrap">
+                <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger px-3 rounded-pill"
+                  style="font-size:0.75rem" data-en="View Prototype" data-pt="Ver Protótipo">View Prototype</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 offset-lg-3" data-aos="fade-up">
+          <div class="project-item">
+            <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?q=80&w=1000&auto=format&fit=crop"
+              alt="Arduino Componentes">
+            <div class="project-info">
+              <span class="badge bg-danger text-white mb-2 fw-bold" data-en="Science Fair"
+                data-pt="Feira de Ciências">Science Fair</span>
+              <h3 class="text-white fw-bold mb-3 h4">Greenhouse Automation</h3>
+              <p class="text-gray mb-3" style="font-size: 0.9rem; font-weight: 300;"
+                data-en="Environmental control system for greenhouses. Integration of temperature, humidity, and light sensors using Arduino and C programming."
+                data-pt="Sistema de controle ambiental para estufas. Integração de sensores de temperatura, umidade e luminosidade utilizando Arduino e programação em C.">
+                Environmental control system for greenhouses. Integration of temperature, humidity, and light sensors
+                using Arduino and C programming.</p>
+              <div class="project-badges mb-3 d-flex flex-wrap gap-2">
+                <span class="badge text-white" style="background:#00979C">Arduino</span>
+                <span class="badge text-white" style="background:#A8B9CC">C language</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline" class="trajectory-section">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <p class="section-subtitle" data-en="// Academic & Professional Journey"
+          data-pt="// Jornada Acadêmica & Profissional">// Academic & Professional Journey</p>
+        <h2 class="section-title" data-en="My <span>Trajectory</span> of Evolution"
+          data-pt="Minha <span>Trajetória</span> de Evolução">My <span>Trajectory</span> of Evolution</h2>
+      </div>
+      <div class="timeline" data-aos="fade-up">
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-content">
+            <div class="timeline-date" data-en="2024 - PRESENT" data-pt="2024 - PRESENTE">2024 - PRESENT</div>
+            <h3 class="fw-bold text-white h5" data-en="Systems Development Technician"
+              data-pt="Técnico em Desenvolvimento de Sistemas">Systems Development Technician</h3>
+            <p class="text-gray small">SENAI - Regente Feijó, SP</p>
+            <p class="text-gray fw-light mb-0" style="font-size:0.85rem"
+              data-en="Complete immersion in software development. Mastery of programming logic, MVC architectures, PHP, MySQL, and security practices."
+              data-pt="Imersão completa no desenvolvimento de software. Domínio de lógica de programação, arquiteturas MVC, PHP, MySQL e práticas de segurança.">
+              Complete immersion in software development. Mastery of programming logic, MVC architectures, PHP, MySQL,
+              and security practices.</p>
+          </div>
+        </div>
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-content">
+            <div class="timeline-date" data-en="2025 - PRESENT" data-pt="2025 - PRESENTE">2025 - PRESENT</div>
+            <h3 class="fw-bold text-white h5" data-en="High School and Integrated Projects"
+              data-pt="Ensino Médio e Projetos Integrados">High School and Integrated Projects</h3>
+            <p class="text-gray small" data-en="State School" data-pt="Escola Estadual">State School</p>
+            <p class="text-gray fw-light mb-0" style="font-size:0.85rem"
+              data-en="Balancing the academic curriculum with technical development. Beginning practical experimentation with hardware and automation."
+              data-pt="Conciliando a grade curricular com o desenvolvimento técnico. Início da experimentação prática com hardware e automação.">
+              Balancing the academic curriculum with technical development. Beginning practical experimentation with
+              hardware and automation.</p>
+          </div>
+        </div>
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-content">
+            <div class="timeline-date" data-en="DEC 2025" data-pt="DEZ 2025">DEC 2025</div>
+            <h3 class="fw-bold text-white h5" data-en="Highlight at the Science Fair"
+              data-pt="Destaque na Feira de Ciências">Highlight at the Science Fair</h3>
+            <p class="text-gray small">Greenhouse Automation Project</p>
+            <p class="text-gray fw-light mb-0" style="font-size:0.85rem"
+              data-en="Presentation of the IoT automation system. Practical application of C programming and circuit engineering."
+              data-pt="Apresentação do sistema de automação IoT. Aplicação prática de programação em C e engenharia de circuitos.">
+              Presentation of the IoT automation system. Practical application of C programming and circuit engineering.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contato" class="footer-huge position-relative">
+    <div class="container text-center">
+      <div>
+        <h6 class="section-subtitle" data-en="// Call to Action" data-pt="// Call to Action">// Call to Action</h6>
+        <h2 class="fw-bold text-white" style="font-size: 3rem; letter-spacing:-1px;"
+          data-en="Let's create <br>something amazing <span style='color:var(--primary)'>together</span>?"
+          data-pt="Vamos criar <br>algo incrível <span style='color:var(--primary)'>juntos</span>?">Let's create
+          <br>something amazing <span style="color:var(--primary)">together</span>?
+        </h2>
+        <p class="text-gray mt-4 max-w-50 mx-auto" style="font-weight: 300;"
+          data-en="I am available for open-source collaborations, freelance development, or opportunities where I can apply my technical expertise."
+          data-pt="Estou disponível para colaborações em projetos open-source, freelas de desenvolvimento ou oportunidades onde eu possa aplicar meu domínio técnico.">
+          I am available for open-source collaborations, freelance development, or opportunities where I can apply my
+          technical expertise.</p>
+      </div>
+
+      <div class="fan-container" id="fanContainer">
+        <a href="https://wa.me/5518992029312" target="_blank" class="fan-item item-1"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://instagram.com/pietro_dalbem_" target="_blank" class="fan-item item-2"><i
+            class="bi bi-instagram"></i></a>
+        <a href="mailto:dalbempietro7@gmail.com" class="fan-item item-3"><i class="bi bi-envelope-at"></i></a>
+        <a href="https://github.com/pietrodalbem-" target="_blank" class="fan-item item-4"><i
+            class="bi bi-github"></i></a>
+        <button class="fan-toggle" id="fanToggle"><i class="fa-solid fa-phone"></i></button>
+      </div>
+
+      <p class="text-gray small mt-2 fw-light" data-en="> Tap the icon to access the channels"
+        data-pt="> Toque no ícone para acessar os canais">> Tap the icon to access the channels</p>
+
+      <div class="mt-5 pt-5" style="border-top: 1px solid rgba(255,255,255,0.03);">
+        <p class="text-gray small fw-light mb-0"
+          data-en="&copy; 2026 Pietro Dalbem. All rights reserved. Built with <span style='color:var(--primary)'>❤</span> and lots of code under W3C standards."
+          data-pt="&copy; 2026 Pietro Dalbem. Todos os direitos reservados. Construído com <span style='color:var(--primary)'>❤</span> e muito código sob os padrões W3C.">
+          &copy; 2026 Pietro Dalbem. All rights reserved. Built with <span style="color:var(--primary)">❤</span> and
+          lots of code under W3C standards.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+    window.scrollTo(0, 0);
+    window.addEventListener('load', () => { 
+      AOS.init({ 
+        once: true, 
+        offset: 0, // Agora aparece no exato momento em que entra na tela
+        duration: 800,
+        anchorPlacement: 'top-bottom' // Trigger assim que o topo entra na base da tela
+      }); 
+      window.scrollTo(0, 0); 
+    });
+
+    /* =========================================
+       SISTEMA DE TRADUÇÃO BILINGUE
+       ========================================= */
+    const langBtn = document.getElementById('languageToggle');
+    const langFlag = document.getElementById('langFlag');
+    const langText = document.getElementById('langText');
+
+    // Dicionários para textos JS dinâmicos (Typewriter e Planetas)
+    const dynamicTexts = {
+      en: {
+        heroWords: ["Hi, I'm Pietro Dalbem.", "Backend Developer (PHP/SQL).", "Full Stack Engineer.", "UI/UX Designer.", "IoT Prototyper (Arduino)."],
+        techDefault: "> Click or hover over the rotating technologies to see specific details of my technical domain.",
+        php: "> Scalable back-end development in MVC. Mastery of secure logic, object orientation and efficient server-side data handling.",
+        mysql: "> Secure relational data engineering. Advanced table modeling, complex relationships and high-performance queries.",
+        js: "> Creation of dynamic and reactive interfaces. Asynchronous DOM manipulation, events and fluid integration with REST APIs.",
+        c: "> Low-level microcontroller programming. Embedded logic in C for IoT and automation with Arduino hardware.",
+        html: "> Semantic, accessible and SEO-optimized structuring. Clear content hierarchy for modern web.",
+        css: "> Advanced and responsive styling. Creation of fluid layouts, Design Systems, animations and modern interfaces with Bootstrap."
+      },
+      pt: {
+        heroWords: ["Olá, eu sou o Pietro Dalbem.", "Desenvolvedor Backend (PHP/SQL).", "Engenheiro Full Stack.", "UI/UX Designer.", "Prototipador IoT (Arduino)."],
+        techDefault: "> Clique ou passe o mouse nas tecnologias giratórias para ver detalhes específicos do meu domínio técnico.",
+        php: "> Desenvolvimento back-end escalável em MVC. Domínio da lógica segura, orientação a objetos e tratamento eficiente de dados server-side.",
+        mysql: "> Engenharia de dados relacionais segura. Modelagem avançada de tabelas, relacionamentos complexos e queries de alta performance.",
+        js: "> Criação de interfaces dinâmicas e reativas. Manipulação assíncrona da DOM, eventos e integração fluída com APIs rest.",
+        c: "> Programação de baixo nível. Lógica embarcada em C para IoT e automação com hardware Arduino.",
+        html: "> Estruturação semântica, acessível e otimizada para SEO. Hierarquia de conteúdo clara para web moderna.",
+        css: "> Estilização avançada e responsiva. Criação de layouts fluídos, Design Systems, animações e interfaces com Bootstrap."
+      }
+    };
+
+    // Pega o idioma atual salvo ou define 'en' como padrão
+    let currentLang = localStorage.getItem('portfolioLang') || 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('portfolioLang', lang);
+
+      // Atualiza botão
+      if (lang === 'en') {
+        langFlag.src = 'https://flagcdn.com/w20/us.png';
+        langText.textContent = 'EN';
+      } else {
+        langFlag.src = 'https://flagcdn.com/w20/br.png';
+        langText.textContent = 'PT';
+      }
+
+      // Substitui os textos HTML fixos
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerHTML = el.getAttribute(`data-${lang}`);
+      });
+
+      // Atualiza o texto default dos planetas se nenhum estiver selecionado
+      const techTextElement = document.getElementById('tech-text');
+      if (techTextElement.style.color !== "var(--primary)") { // se não tiver planeta ativo
+        techTextElement.innerHTML = dynamicTexts[lang].techDefault;
+      }
+    }
+
+    // Toggle ao clicar
+    langBtn.addEventListener('click', () => {
+      setLanguage(currentLang === 'en' ? 'pt' : 'en');
+    });
+
+    // Inicia idioma na primeira carga
+    setLanguage(currentLang);
+
+    /* =========================================
+       MÁQUINA DE ESCREVER (TYPEWRITER)
+       ========================================= */
+    let heroIndex = 0, heroChar = 0, heroDeleting = false;
+    function typeHero() {
+      // Puxa as palavras baseado no idioma atual dinamicamente
+      const words = dynamicTexts[currentLang].heroWords;
+
+      // Previne erro caso o index fique maior que o array ao trocar idioma no meio
+      if (heroIndex >= words.length) heroIndex = 0;
+
+      const currentWord = words[heroIndex];
+      const typewriterElement = document.getElementById("typewriter");
+
+      if (heroDeleting) { typewriterElement.textContent = currentWord.substring(0, heroChar - 1); heroChar--; }
+      else { typewriterElement.textContent = currentWord.substring(0, heroChar + 1); heroChar++; }
+
+      let speed = heroDeleting ? 40 : 80;
+      if (!heroDeleting && heroChar === currentWord.length) { speed = 2500; heroDeleting = true; }
+      else if (heroDeleting && heroChar === 0) { heroDeleting = false; heroIndex = (heroIndex + 1) % words.length; speed = 400; }
+
+      setTimeout(typeHero, speed);
+    }
+    window.addEventListener('load', typeHero);
+
+    /* =========================================
+       LÓGICA DOS PLANETAS
+       ========================================= */
+    const pietroPhoto = document.getElementById('pietro-photo');
+    const solarWrapper = document.getElementById('solar-system');
+    const techTextElement = document.getElementById('tech-text');
+    const techTitleElement = document.getElementById('tech-title');
+    const allPlanets = document.querySelectorAll('.planet');
+
+    let typingTimer;
+    function typeTechText(text, index) {
+      if (index < text.length) {
+        techTextElement.textContent += text.charAt(index);
+        typingTimer = setTimeout(() => typeTechText(text, index + 1), 10);
+      }
+    }
+
+    function activateTech(planet) {
+      clearTimeout(typingTimer);
+      pietroPhoto.classList.add('photo-react'); solarWrapper.classList.add('paused');
+      allPlanets.forEach(p => p.classList.remove('selected')); planet.classList.add('selected');
+      const techKey = planet.getAttribute('data-tech');
+      techTitleElement.textContent = techKey.toUpperCase(); techTextElement.textContent = ""; techTextElement.style.color = "var(--primary)";
+      // Puxa texto do dicionário atual
+      typeTechText(dynamicTexts[currentLang][techKey], 0);
+    }
+
+    function resetTech() {
+      clearTimeout(typingTimer);
+      pietroPhoto.classList.remove('photo-react'); solarWrapper.classList.remove('paused'); allPlanets.forEach(p => p.classList.remove('selected'));
+      techTitleElement.textContent = "Stack & Core Tech";
+      techTextElement.textContent = dynamicTexts[currentLang].techDefault;
+      techTextElement.style.color = "#cbd5e1";
+    }
+
+    allPlanets.forEach(planet => {
+      if (window.innerWidth > 768) {
+        planet.addEventListener('mouseover', () => activateTech(planet)); planet.addEventListener('mouseout', resetTech);
+      } else {
+        planet.addEventListener('click', (e) => { e.preventDefault(); activateTech(planet); });
+      }
+    });
+
+    if (window.innerWidth > 768) {
+      document.addEventListener('mousemove', (e) => {
+        const photo = document.querySelector('.hero-img-vertical');
+        if (!photo.classList.contains('photo-react')) {
+          const x = (window.innerWidth / 2 - e.clientX) / 70; const y = (window.innerHeight / 2 - e.clientY) / 70;
+          photo.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        }
+      });
+    }
+
+    /* =========================================
+       MENU LEQUE NO FOOTER
+       ========================================= */
+    const fanToggle = document.getElementById('fanToggle');
+    const fanContainer = document.getElementById('fanContainer');
+
+    fanToggle.addEventListener('click', () => {
+      fanContainer.classList.toggle('active');
+      const icon = fanToggle.querySelector('i');
+      if (fanContainer.classList.contains('active')) {
+        icon.classList.remove('fa-phone');
+        icon.classList.add('fa-xmark');
+      } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-phone');
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!fanContainer.contains(event.target) && fanContainer.classList.contains('active')) {
+        fanContainer.classList.remove('active');
+        const icon = fanToggle.querySelector('i');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-phone');
+      }
+    });
+
+    /* =========================================
+       NOVAS ANIMAÇÕES E INTERAÇÕES
+       ========================================= */
+    
+    // Magnetic Buttons
+    document.querySelectorAll('.magnetic-wrap').forEach(wrap => {
+      wrap.addEventListener('mousemove', (e) => {
+        const x = e.offsetX - wrap.offsetWidth / 2;
+        const y = e.offsetY - wrap.offsetHeight / 2;
+        wrap.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+      wrap.addEventListener('mouseleave', () => {
+        wrap.style.transform = 'translate(0px, 0px)';
+      });
+    });
+
+    // Simple Card Tilt Effect
+    document.querySelectorAll('.expertise-card, .project-item').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 15;
+        const rotateY = (centerX - x) / 15;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+
+    // Glitch effect on section titles
+    document.querySelectorAll('.section-title').forEach(title => {
+      title.addEventListener('mouseenter', () => {
+        title.style.animation = 'glitch 0.3s linear infinite';
+      });
+      title.addEventListener('mouseleave', () => {
+        title.style.animation = 'none';
+      });
+    });
+  </script>
+</body>
+
+</html>
