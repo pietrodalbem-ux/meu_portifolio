@@ -8,6 +8,8 @@
   <title>Pietro Dalbem | Full Stack Developer & UI/UX</title>
 
   <link rel="icon" type="image/png" href="head_icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF2A4D">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -21,13 +23,13 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.1">
 </head>
 
 <body>
   
   <!-- Background interativo com Partículas -->
-  <div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -2; background-color: #000000;"></div>
+  <div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000000;"></div>
   
 
 
@@ -64,6 +66,11 @@
               </button>
             </div>
           </li>
+          <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
+            <button id="installPwaBtn" class="btn btn-outline-danger btn-sm px-3 py-2 rounded-1 d-none fw-bold" style="font-family: 'Fira Code', monospace; letter-spacing: 1px;" data-en="Install App" data-pt="Instalar App">
+              <i class="bi bi-download me-1"></i> Install App
+            </button>
+          </li>
         </ul>
       </div>
     </div>
@@ -91,8 +98,8 @@
               data-en="Explore Portfolio" data-pt="Explorar Portfólio">Explore Portfolio</a>
           </div>
 
-          <div class="tech-widget-box d-flex flex-row align-items-center p-4 mt-3">
-            <div id="solar-system" class="solar-wrapper-small me-xl-4">
+          <div class="tech-widget-box d-flex flex-column flex-lg-row align-items-center p-4 mt-3 text-center text-lg-start">
+            <div id="solar-system" class="solar-wrapper-small mb-4 mb-lg-0 me-lg-4">
               <div class="sun"><i class="fa-solid fa-brain"></i></div>
               <div class="orbit orbit-1">
                 <div class="planet p-a" data-tech="html"><i class="devicon-html5-plain"></i></div>
@@ -199,74 +206,52 @@
       </div>
       <div class="row mt-5 g-4">
         <div class="col-lg-6" data-aos="fade-right">
-          <div class="project-item">
-            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1000&auto=format&fit=crop"
-              alt="Sistema de Gestão Financeira PHP">
+          <a href="http://tigraolanches.com.br/sistema_tigrao/" target="_blank" class="project-item text-decoration-none d-block">
+            <img src="tigrao_logo.png"
+              alt="Sistema Tigrão Lanches">
             <div class="project-info">
-              <span class="badge bg-warning text-dark mb-2 fw-bold" data-en="In Development"
-                data-pt="Em Desenvolvimento">In Development</span>
-              <h3 class="text-white fw-bold mb-3 h4" data-en="Core CRM: Enterprise Management System"
-                data-pt="Core CRM: Sistema de Gestão Empresarial">Core CRM: Enterprise Management System</h3>
+              <span class="badge bg-success text-white mb-2 fw-bold" data-en="Live Project"
+                data-pt="Projeto no Ar">Live Project</span>
+              <h3 class="text-white fw-bold mb-3 h4">Sistema Tigrão Lanches</h3>
               <p class="text-gray mb-3" style="font-size: 0.9rem; font-weight: 300;"
-                data-en="Advanced database modeling and back-end logic structured in MVC. Focus on secure CRUD operations and authentication system."
-                data-pt="Modelagem avançada de banco de dados e lógica back-end estruturada em MVC. Foco na implementação segura de operações CRUD e sistema de autenticação.">
-                Advanced database modeling and back-end logic structured in MVC. Focus on secure CRUD operations and
-                authentication system.</p>
+                data-en="Complete web system for managing orders and operations for a local snack bar/restaurant."
+                data-pt="Sistema web completo para gestão de pedidos e operações para uma lanchonete local.">
+                Complete web system for managing orders and operations for a local snack bar/restaurant.</p>
               <div class="project-badges mb-3 d-flex flex-wrap gap-2">
                 <span class="badge text-white" style="background:#777BB4">PHP</span>
                 <span class="badge text-white" style="background:#4479A1">MySQL</span>
+                <span class="badge text-white" style="background:#F7DF1E; color:#000!important">JS</span>
               </div>
               <div class="magnetic-wrap">
-                <a href="https://github.com/pietrodalbem-" target="_blank" class="btn btn-sm btn-danger px-3 rounded-pill"
-                  style="font-size:0.75rem">GitHub</a>
+                <span class="btn btn-sm btn-danger px-3 rounded-pill"
+                  style="font-size:0.75rem" data-en="Visit System" data-pt="Acessar Sistema">Visit System</span>
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-lg-6" data-aos="fade-left">
-          <div class="project-item">
-            <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=1000&auto=format&fit=crop"
-              alt="Interface Figma Mobile Design">
+          <a href="https://gessokasanova.com.br" target="_blank" class="project-item text-decoration-none d-block">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop"
+              alt="Gesso Kasanova">
             <div class="project-info">
-              <span class="badge bg-success text-white mb-2 fw-bold" data-en="Completed/Prototyping"
-                data-pt="Concluído/Prototipagem">Completed/Prototyping</span>
-              <h3 class="text-white fw-bold mb-3 h4" data-en="Aurora Design System: UI Components"
-                data-pt="Aurora Design System: Componentes UI">Aurora Design System: UI Components</h3>
+              <span class="badge bg-success text-white mb-2 fw-bold" data-en="Live Project"
+                data-pt="Projeto no Ar">Live Project</span>
+              <h3 class="text-white fw-bold mb-3 h4">Gesso Kasanova</h3>
               <p class="text-gray mb-3" style="font-size: 0.9rem; font-weight: 300;"
-                data-en="Complete development of a design system in Figma, focusing on creating scalable components, variants, and interactive prototyping."
-                data-pt="Desenvolvimento completo de um sistema de design no Figma, com foco na criação de componentes escaláveis, variantes e prototipagem interativa.">
-                Complete development of a design system in Figma, focusing on creating scalable components, variants,
-                and interactive prototyping.</p>
+                data-en="Institutional website and digital portfolio for a plaster and interior construction services company."
+                data-pt="Site institucional e portfólio digital para empresa de serviços de gesso e construção de interiores.">
+                Institutional website and digital portfolio for a plaster and interior construction services company.</p>
               <div class="project-badges mb-3 d-flex flex-wrap gap-2">
-                <span class="badge text-white" style="background:#F24E1E">Figma</span>
-                <span class="badge text-white" style="background:#ff4444">UI/UX</span>
+                <span class="badge text-white" style="background:#E34F26">HTML5</span>
+                <span class="badge text-white" style="background:#1572B6">CSS3</span>
+                <span class="badge text-white" style="background:#F7DF1E; color:#000!important">JS</span>
               </div>
               <div class="magnetic-wrap">
-                <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger px-3 rounded-pill"
-                  style="font-size:0.75rem" data-en="View Prototype" data-pt="Ver Protótipo">View Prototype</a>
+                <span class="btn btn-sm btn-danger px-3 rounded-pill"
+                  style="font-size:0.75rem" data-en="Visit Website" data-pt="Acessar Site">Visit Website</span>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-6 offset-lg-3" data-aos="fade-up">
-          <div class="project-item">
-            <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?q=80&w=1000&auto=format&fit=crop"
-              alt="Arduino Componentes">
-            <div class="project-info">
-              <span class="badge bg-danger text-white mb-2 fw-bold" data-en="Science Fair"
-                data-pt="Feira de Ciências">Science Fair</span>
-              <h3 class="text-white fw-bold mb-3 h4">Greenhouse Automation</h3>
-              <p class="text-gray mb-3" style="font-size: 0.9rem; font-weight: 300;"
-                data-en="Environmental control system for greenhouses. Integration of temperature, humidity, and light sensors using Arduino and C programming."
-                data-pt="Sistema de controle ambiental para estufas. Integração de sensores de temperatura, umidade e luminosidade utilizando Arduino e programação em C.">
-                Environmental control system for greenhouses. Integration of temperature, humidity, and light sensors
-                using Arduino and C programming.</p>
-              <div class="project-badges mb-3 d-flex flex-wrap gap-2">
-                <span class="badge text-white" style="background:#00979C">Arduino</span>
-                <span class="badge text-white" style="background:#A8B9CC">C language</span>
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -283,28 +268,27 @@
       <div class="timeline" data-aos="fade-up">
         <div class="timeline-item left" data-aos="fade-right">
           <div class="timeline-content">
-            <div class="timeline-date" data-en="2024 - PRESENT" data-pt="2024 - PRESENTE">2024 - PRESENT</div>
-            <h3 class="fw-bold text-white h5" data-en="Systems Development Technician"
-              data-pt="Técnico em Desenvolvimento de Sistemas">Systems Development Technician</h3>
+            <div class="timeline-date" data-en="2025 - 2026" data-pt="2025">2025</div>
+            <h3 class="fw-bold text-white h5" data-en="Systems Development Technician (2nd Year)"
+              data-pt="Técnico em Desenvolvimento de Sistemas (2º Ano)">Systems Development Technician (2nd Year)</h3>
             <p class="text-gray small">SENAI - Regente Feijó, SP</p>
             <p class="text-gray fw-light mb-0" style="font-size:0.85rem"
-              data-en="Complete immersion in software development. Mastery of programming logic, MVC architectures, PHP, MySQL, and security practices."
-              data-pt="Imersão completa no desenvolvimento de software. Domínio de lógica de programação, arquiteturas MVC, PHP, MySQL e práticas de segurança.">
-              Complete immersion in software development. Mastery of programming logic, MVC architectures, PHP, MySQL,
+              data-en="Currently in my 2nd year, diving deep into software development. Mastery of programming logic, MVC architectures, PHP, MySQL, and security practices."
+              data-pt="Atualmente cursando o 2º ano, com imersão completa no desenvolvimento de software. Domínio de lógica de programação, arquiteturas MVC, PHP, MySQL e práticas de segurança.">
+              Currently in my 2nd year, diving deep into software development. Mastery of programming logic, MVC architectures, PHP, MySQL,
               and security practices.</p>
           </div>
         </div>
         <div class="timeline-item right" data-aos="fade-left">
           <div class="timeline-content">
-            <div class="timeline-date" data-en="2025 - PRESENT" data-pt="2025 - PRESENTE">2025 - PRESENT</div>
-            <h3 class="fw-bold text-white h5" data-en="High School and Integrated Projects"
-              data-pt="Ensino Médio e Projetos Integrados">High School and Integrated Projects</h3>
-            <p class="text-gray small" data-en="State School" data-pt="Escola Estadual">State School</p>
+            <div class="timeline-date" data-en="2025 - 2026" data-pt="2025 - 2026">2025 - 2026</div>
+            <h3 class="fw-bold text-white h5" data-en="High School and Integrated Projects (3rd Year)"
+              data-pt="Ensino Médio e Projetos Integrados (3º Ano)">High School and Integrated Projects (3rd Year)</h3>
+            <p class="text-gray small" data-en="SESI" data-pt="SESI">SESI</p>
             <p class="text-gray fw-light mb-0" style="font-size:0.85rem"
-              data-en="Balancing the academic curriculum with technical development. Beginning practical experimentation with hardware and automation."
-              data-pt="Conciliando a grade curricular com o desenvolvimento técnico. Início da experimentação prática com hardware e automação.">
-              Balancing the academic curriculum with technical development. Beginning practical experimentation with
-              hardware and automation.</p>
+              data-en="Currently in my 3rd year of High School. Successfully balancing an advanced academic curriculum with intense technical development and practical experimentation."
+              data-pt="Atualmente no 3º ano do Ensino Médio. Conciliando com sucesso uma grade curricular avançada com intenso desenvolvimento técnico e experimentação prática.">
+              Currently in my 3rd year of High School. Successfully balancing an advanced academic curriculum with intense technical development and practical experimentation.</p>
           </div>
         </div>
         <div class="timeline-item left" data-aos="fade-right">
@@ -328,7 +312,7 @@
     <div class="container text-center">
       <div>
         <h6 class="section-subtitle" data-en="// Call to Action" data-pt="// Call to Action">// Call to Action</h6>
-        <h2 class="fw-bold text-white" style="font-size: 3rem; letter-spacing:-1px;"
+        <h2 class="fw-bold text-white" style="font-size: clamp(2rem, 8vw, 3.5rem); letter-spacing:-1px;"
           data-en="Let's create <br>something amazing <span style='color:var(--primary)'>together</span>?"
           data-pt="Vamos criar <br>algo incrível <span style='color:var(--primary)'>juntos</span>?">Let's create
           <br>something amazing <span style="color:var(--primary)">together</span>?

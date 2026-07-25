@@ -107,7 +107,7 @@ function typeHero() {
 window.addEventListener('load', typeHero);
 
 /* =========================================
-    LÓGICA DOS PLANETAS
+    LÓGICA DOS PLANETAS E SISTEMA SOLAR
     ========================================= */
 const pietroPhoto = document.getElementById('pietro-photo');
 const solarWrapper = document.getElementById('solar-system');
@@ -116,6 +116,8 @@ const techTitleElement = document.getElementById('tech-title');
 const allPlanets = document.querySelectorAll('.planet');
 
 let typingTimer;
+let inactivityTimer;
+
 function typeTechText(text, index) {
   if (index < text.length) {
     techTextElement.textContent += text.charAt(index);
@@ -125,21 +127,29 @@ function typeTechText(text, index) {
 
 function activateTech(planet) {
   clearTimeout(typingTimer);
+  clearTimeout(inactivityTimer);
+  
   if (pietroPhoto) pietroPhoto.classList.add('photo-react'); 
   if (solarWrapper) solarWrapper.classList.add('paused');
-  allPlanets.forEach(p => p.classList.remove('selected')); planet.classList.add('selected');
+  allPlanets.forEach(p => p.classList.remove('selected')); 
+  planet.classList.add('selected');
   const techKey = planet.getAttribute('data-tech');
   if (techTitleElement) techTitleElement.textContent = techKey.toUpperCase(); 
   if (techTextElement) {
     techTextElement.textContent = ""; 
     techTextElement.style.color = "var(--primary)";
-    // Puxa texto do dicionário atual
     typeTechText(dynamicTexts[currentLang][techKey], 0);
   }
+  
+  inactivityTimer = setTimeout(() => {
+    resetTech();
+  }, 60000);
 }
 
 function resetTech() {
   clearTimeout(typingTimer);
+  clearTimeout(inactivityTimer);
+  
   if (pietroPhoto) pietroPhoto.classList.remove('photo-react'); 
   if (solarWrapper) solarWrapper.classList.remove('paused'); 
   allPlanets.forEach(p => p.classList.remove('selected'));
@@ -150,11 +160,23 @@ function resetTech() {
   }
 }
 
+const sun = document.querySelector('.sun');
+if (sun) {
+  sun.addEventListener('click', (e) => {
+    e.preventDefault();
+    resetTech();
+  });
+}
+
 allPlanets.forEach(planet => {
   if (window.innerWidth > 768) {
-    planet.addEventListener('mouseover', () => activateTech(planet)); planet.addEventListener('mouseout', resetTech);
+    planet.addEventListener('mouseover', () => activateTech(planet)); 
+    planet.addEventListener('mouseout', resetTech);
   } else {
-    planet.addEventListener('click', (e) => { e.preventDefault(); activateTech(planet); });
+    planet.addEventListener('click', (e) => { 
+      e.preventDefault(); 
+      activateTech(planet); 
+    });
   }
 });
 
@@ -162,7 +184,8 @@ if (window.innerWidth > 768) {
   document.addEventListener('mousemove', (e) => {
     const photo = document.querySelector('.hero-img-vertical');
     if (photo && !photo.classList.contains('photo-react')) {
-      const x = (window.innerWidth / 2 - e.clientX) / 70; const y = (window.innerHeight / 2 - e.clientY) / 70;
+      const x = (window.innerWidth / 2 - e.clientX) / 70; 
+      const y = (window.innerHeight / 2 - e.clientY) / 70;
       photo.style.transform = `translateX(${x}px) translateY(${y}px)`;
     }
   });
@@ -285,3 +308,60 @@ if (window.particlesJS) {
     "retina_detect": true
   });
 }
+
+/* =========================================
+   SERVICE WORKER REGISTRATION (PWA)
+   ========================================= */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(registration => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, err => {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  });
+}
+
+/* =========================================
+   PWA INSTALL BUTTON LOGIC
+   ========================================= */
+let deferredPrompt;
+const installBtn = document.getElementById('installPwaBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI notify the user they can install the PWA
+  if (installBtn) {
+    installBtn.classList.remove('d-none');
+  }
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    // Hide the app provided install promotion
+    installBtn.classList.add('d-none');
+    // Show the install prompt
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
+      // We've used the prompt, and can't use it again, throw it away
+      deferredPrompt = null;
+    }
+  });
+}
+
+window.addEventListener('appinstalled', () => {
+  // Hide the app-provided install promotion
+  if (installBtn) {
+    installBtn.classList.add('d-none');
+  }
+  // Clear the deferredPrompt so it can be garbage collected
+  deferredPrompt = null;
+  console.log('PWA was installed');
+});
